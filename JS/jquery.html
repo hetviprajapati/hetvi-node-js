@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <script
+             src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+        </script>
+        <style>
+            #div1,#div2{
+                padding: 5px;
+                text-align: center;
+               /* background-color: aqua;*/   
+                border: solid 1px coral;
+            }
+            #div2{
+                display: none;
+                padding: 50px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <p id="p1">Hello World </p>
+        <p id="p2">Hello Hetvi</p>
+        <p id="demo"></p>
+        <p class="p3"></p>
+        <button>Double Click</button>
+        <button>Hide</button>
+        <input type="text" name="txtname">
+        <br>
+        <div id="div1">Click To Slide Down</div>
+        <div id="div2">Hello</div>
+        <ul id="myul"> 
+            <li>India</li>
+            <li>Us</li>
+            <li>Canada</li>
+        </ul>
+        <button onclick="Add()" id="btnadd">Add</button>
+        <ul id="myul2">
+        </ul>
+        <script>
+           $(document).ready(function(){
+                $("#btnadd").click(function(){
+                    $("#myul2").append("<li>"+$("#myul li:first").text() +"</li>");
+                    $("#myul li:first").remove();
+                });
+           });
+        </script>
+        <script>
+            $(document).ready(function(){
+                var element=$("#p1");
+                $("#demo").text(element[0].innerText);
+            });
+        </script>
+        <script>
+            $(document).ready(function()
+            {
+              //  $("button").dblclick(function(){
+                //    $(this).hide();
+              //  })
+            });
+        </script>
+        <script>
+            $(document).ready(function(){
+                $("input").blur(function()
+                {
+                    if($("input").val()=="")
+                        {alert("plz Enter Name");}
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function(){
+                $("button").click(function()
+                {
+                    $("p").hide(1000);
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function(){
+                $("#div1").click(function(){
+                    $("#div2").slideDown("slow");
+                });
+            });
+        </script>
+    </body>
+</html>

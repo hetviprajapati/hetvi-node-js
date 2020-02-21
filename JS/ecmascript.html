@@ -1,0 +1,129 @@
+<html>
+    <script>
+"use strict" 
+function test() { 
+   var num = 100 
+   console.log("value of num in test() "+num) 
+  {
+      console.log("Inner Block begins") 
+      let num = 200 
+      console.log("value of num : "+num)
+   }   
+} 
+//test()
+
+var fun=function(x,y){
+    alert(x*y);
+}
+//fun(10,20)
+
+var fun1=new Function("x","y","return x*y;");
+//alert(fun1(10,20));
+</script>
+<script>
+    function factorial(num) { 
+   if(num<=0) { 
+      return 1; 
+   } else { 
+      return (num * factorial(num-1)  ) 
+   } 
+} 
+console.log(factorial(4)) 
+</script>
+<script>
+    class car{
+        constructor(brand)
+        {
+            this.carname=brand;
+        }
+    }
+    var mycar=new car('Ford');
+ //   alert(mycar.carname);
+</script>
+<script>
+    var text='{"Employess":[{"firstname":"Hetvi","lastname":"prajapati"},{"firstname":"shrddha","lastname":"sakariya"}]}';
+
+    var obj=JSON.parse(text);
+   // alert(obj.Employess[1].firstname);
+
+</script>
+<script>
+      function newLocation() { 
+                 window.location.replace("https://www.tutorialspoint.com/es6/es6_page_redirect.htm"); 
+      } 
+ </script>
+
+ <script>
+ //    "use strict" 
+    var det = { name:"Tom", ID:"E1001" }; 
+    var copy = Object.assign({}, det); 
+   console.log(copy);  
+for (let val in copy) { 
+    console.log(copy[val]) 
+}
+    var o1 = { a: 10 }; 
+var o2 = { b: 20 }; 
+var o3 = { c: 30 }; 
+var obj = Object.assign(o2, o1, o3); 
+console.log(obj);  
+console.log(o2);
+
+var val1 = {name: "Tom"}; 
+var val2 = val1; 
+console.log(val1 == val2)  // return false 
+console.log(val1 === val2)
+
+var v={name : 'Hetvi',ID :3};
+var {name,ID}=v;
+console.log(name);
+console.log(ID);
+
+(function(){
+  var a = b = 3;
+})();
+
+console.log("a defined? " + (typeof a !== 'undefined'));
+console.log("b defined? " + (typeof b !== 'undefined'));
+
+console.log(0b001) 
+console.log(0b010) 
+console.log(0b011) 
+console.log(0b100)
+
+console.log(0o010) 
+console.log(0o100)
+
+var re = /apples/gi;
+var str = "Apples are round, and apples are juicy."; 
+var newstr = str.replace(re, "oranges"); 
+console.log(newstr) 
+console.log(re);
+
+var re = /(\w+)\s(\w+)/; 
+var str = "zara ali"; 
+var newstr = str.replace(re, "$2, $1"); 
+console.log(newstr);
+
+var str = 'Hello World !!! '; 
+ 
+console.log(str.endsWith('Hello')); 
+console.log(str.endsWith('Hello',5));
+
+function fn() { return "Hello World"; } 
+console.log(`Message: ${fn()} !!`);
+
+var aa=`gkhdkg
+ghdksd
+fhdkg`;
+
+
+var arr=["aa","bb","aa","cc"];
+function uniq(arrr) {
+   return Array.from(new Set(arrr));
+}
+console.log(uniq(arr));
+ </script>
+  <body> 
+         <input type = "button" value = "Go to new location" onclick = "newLocation()"> 
+  </body> 
+</html>

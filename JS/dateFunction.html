@@ -1,0 +1,45 @@
+<html>
+    <body>
+        <input type="date" id="txtdate">
+        <input type="button" onclick="change(document.getElementById('txtdate').value)" value="Change"> 
+
+        <input type="date" id="txtdate1">
+        <input type="date" id="txtdate2">
+        <input type="button" onclick="difference(document.getElementById('txtdate1').value,document.getElementById('txtdate2').value)" value="Change"> 
+    </body>
+</html>
+<script>
+        function change(userdate)
+        {   
+           var date=new Date(userdate);
+           var yyyy=date.getFullYear();
+           var mm=date.getMonth();
+           var dd=date.getDate();
+        
+           document.getElementById('txtdate').value=(mm+1)+"/"+dd+"/"+yyyy;
+
+           var str=yyyy+""+(mm+1)+""+dd;
+            console.log(str);
+        }
+
+         function difference(date1,date2)
+         {
+            var timediff;
+            var d1=new Date(date1);
+            var d2=new Date(date2);
+
+            if(d1.getTime()>d2.getTime())
+                       timediff=d1.getTime()-d2.getTime();
+            else
+                       timediff=d2.getTime()-d1.getTime();
+            var daydiff=timediff/(1000*60*60*24);
+            alert(daydiff);
+         }
+        var d=new Date();
+        //alert(d.getHours());
+    //    if(d.getHours()>12)
+      //   alert(d.getHours()+" PM")
+    //    else
+     //    alert(d.getHours()+" AM")
+      //  change("12/31/2014");
+</script>

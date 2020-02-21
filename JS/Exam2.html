@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <img id="image" src="D:\Hetvi\html.gif" height="200px" width="200px">
+
+        <br>
+        <input type="button" value="Zoom In" onclick="ZoomIn()">
+        <input type="button" value="Zoom Out" onclick="ZoomOut()">
+        <input type="button" value="Reset"  onclick="Reset()">
+    </body>
+    <script>
+        function ZoomIn(){
+            if(document.getElementById("image").height<300 || document.getElementById("image").width <300 )
+            {
+                document.getElementById("image").height=document.getElementById("image").height+10;
+               document.getElementById("image").width=document.getElementById("image").width+10;
+            }   
+        }
+        function ZoomOut(){
+            if(document.getElementById("image").height>50 || document.getElementById("image").width >50 )
+            {
+                document.getElementById("image").height=document.getElementById("image").height-10;
+               document.getElementById("image").width=document.getElementById("image").width-10;
+            }   
+        }
+        function Reset(){
+            if(document.getElementById("image").height>50 || document.getElementById("image").width >50 )
+            {
+                document.getElementById("image").height=200;
+               document.getElementById("image").width=200;
+            }   
+        }
+    </script>
+</html>

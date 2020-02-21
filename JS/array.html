@@ -1,0 +1,25 @@
+<button onclick="myFun()">Check</button>
+
+<p id="demo"></p>
+
+<script>
+ var
+    var ages=[10,20,30,40];
+
+    function checkAdults(age)
+    {
+        return age>=18;
+    }
+    function myFun()
+    {
+           document.getElementById("demo").innerHTML=ages.every(checkAdults);
+           document.getElementById("demo").innerHTML=ages.filter(checkAdults);
+    }
+
+    var fruits = ["apple", "orange", "cherry"];
+    fruits.forEach(myFunction);
+
+    function myFunction(item, index) {
+    document.getElementById("demo").innerHTML += index + ":" + item + "<br>"; 
+}
+</script>

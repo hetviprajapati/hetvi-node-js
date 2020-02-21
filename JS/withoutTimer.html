@@ -1,0 +1,102 @@
+<html>
+ <script>
+        function test1()
+        {    
+           for(i=0;i<10;i++)
+           {
+             sleep(1000);
+             alert('hi'); 
+          }
+       }
+    //  test1();
+        function sleep(delay) {
+          var start = new Date().getTime();
+             while (new Date().getTime() < start + delay)
+              {
+                     //alert("hgrfdhyj");
+             }
+         }
+               
+   </script>
+<script>
+    var n=3;
+    var arr=[];
+    var obj={};
+    for(i=0;i<n;i++)
+    {
+        arr[i]=[];
+        for(j=0;j<n;j++)
+        {
+            arr[i][j]=Math.floor(Math.random()*9+1);
+            document.write(arr[i][j]+"  ");
+        }
+        document.write("<br>");
+    }
+    document.write("<br>");
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            find(arr[i][j]);
+        }
+    }
+    function find(element)
+    {
+        for(k=0;k<n;k++)
+        {
+          for(l=0;l<n;l++)
+          {
+              if(element==arr[k][l])
+              {
+                 if(obj[element]==undefined)
+                 {
+                    obj[element]=new Array();
+                 }  
+                 else
+                 {
+                     if(!obj[element].includes(k+""+l))
+                       obj[element].push(k+""+l);  
+                 } 
+              }
+          } 
+       } 
+    }
+    for(var prop in obj)
+    {
+        if(obj.hasOwnProperty(prop))
+        {
+            if(obj[prop]!="")
+               document.write(prop+"=>"+obj[prop]+"<br>");
+        }
+    }
+    document.write("<br>");
+</script>
+
+
+
+<body>
+<input type="text" id="txt" list="dt" onkeyup="show()">
+<datalist id="dt"></datalist>
+<script>
+    var arr=["Hetvi","Shrddha","Arti","Ashmita"];
+    function show()
+    {
+        document.getElementById('dt').innerHTML = ""; 
+        if(document.getElementById("txt").value!="")
+        {
+             for(i=0;i<arr.length;i++)
+             {
+                 var txt=document.getElementById("txt").value;
+                 if(arr[i].substr(0,txt.length).toUpperCase()==txt.toUpperCase())
+                  {
+                     var op=document.createElement("option");
+                     var txtnode=document.createTextNode(arr[i]);
+                     op.appendChild(txtnode);
+                     document.getElementById("dt").appendChild(op);
+                 }
+              }
+        }     
+    }
+</script>
+</body>
+</html>

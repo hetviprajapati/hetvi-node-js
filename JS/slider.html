@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+       </script>
+    </head>
+
+    <style>
+        #prevImage,#nextImage{
+            height: 60px;
+            width: 60px;
+            margin-bottom: 100px;
+        }
+        #slider{
+            height: 300px;
+            width: 300px;
+        }
+    </style>
+    <body>
+        <img id="prevImage" src="D:\Hetvi\previmg.png" >
+        <img id="slider" src="D:\Hetvi\slide1.jpg">
+        <img id="nextImage" src="D:\Hetvi\nextimg.png" >
+    </body>
+
+    <script>
+        var count=1;
+        var stop;
+        $(document).ready(function(){
+           stop = setInterval(function(){
+            count++;
+               if(count==5)
+                count=1;
+               $("#slider").attr("src","D:/Hetvi/slide"+count+".jpg");
+             
+            }, 1000);
+
+            $("#nextImage").click(function(){
+                clearInterval(stop); 
+                count++;
+                if(count==5)
+                    count=1;
+                $("#slider").attr("src","D:/Hetvi/slide"+count+".jpg");
+              
+            });
+
+            $("#prevImage").click(function(){
+               
+                
+                $("#slider").attr("src","D:/Hetvi/slide"+count+".jpg");
+                count--;
+                if(count==0)
+                    count=1;
+                clearInterval(stop); 
+               
+            });
+        });
+    </script>
+</html>

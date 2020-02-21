@@ -1,0 +1,38 @@
+<html>
+    <body>
+        <script>
+            var str=prompt("Enter String");
+            var n=str.length;
+            var table=document.createElement("table");
+            for(i=n;i>0;i--)
+            {
+                var tr=document.createElement("tr");
+                for(j=n-i;j<=n;j++)
+                {
+                    var td=document.createElement("td");
+                    var txt=document.createTextNode(" ");
+                    td.appendChild(txt);
+                    tr.appendChild(td);
+                 // document.write("&nbsp;");
+                }
+                for(k=0;k<=n-i;k++)
+                {
+                   var td=document.createElement("td");
+                   var txt=document.createTextNode(Math.random().toString(36).replace(/[^a-z]+/g,'').substr(0,1).toUpperCase()+" ");
+                   td.appendChild(txt);
+                   td.addEventListener("mouseover",function(){
+                        alert(this.textContent.charCodeAt(0));
+                        alert(Number(this.textContent.charCodeAt(0)).toString(2));
+                   });
+                   tr.appendChild(td);
+                   var td1=document.createElement("td");
+                   var txt=document.createTextNode(" ");
+                   td1.appendChild(txt);
+                   tr.appendChild(td1);
+                }
+                table.appendChild(tr);
+            }
+            document.body.appendChild(table);
+        </script>
+    </body>
+</html>

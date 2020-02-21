@@ -1,0 +1,90 @@
+<html>
+    <body>
+        Q:<input type="text" id="txt1">
+        <br><br>
+        A:<input type="text" id="txt2">
+        <br><br>
+        <input type="button" id="btnAdd" value="Add" onclick="Create()">
+        <br>
+    </body>
+    <script>
+        var count=0;
+        var q1id;
+        var a1id;
+        function Create()
+        {
+            count++;
+            var lb=document.createElement("br");
+            var divtag=document.createElement("div");
+
+            var q1=document.createElement("p");
+            q1.id="q"+count;
+            var a1=document.createElement("p");
+            a1.id="a"+count;
+            var q1txt=document.createTextNode(document.getElementById("txt1").value);
+            var a1txt=document.createTextNode(document.getElementById("txt2").value);
+            q1.appendChild(q1txt);
+            a1.appendChild(a1txt);
+
+            divtag.appendChild(q1);
+            divtag.appendChild(a1);
+            
+            divtag.style.height='100px';
+            divtag.style.width='170px';
+            divtag.style.backgroundColor="orange";
+
+           
+          
+            var btn=document.createElement("button");
+            btn.textContent="Delete";
+            btn.id="b"+count;
+            btn.height='50px';
+            btn.width='70px';  
+            divtag.appendChild(lb);
+            btn.style.marginTop='10px';
+           
+            var btnedit=document.createElement("button");
+            btnedit.textContent="Edit";
+            btnedit.id="e"+count;
+            btnedit.height='50px';
+            btnedit.width='70px';  
+
+            var btnsave=document.createElement("button");
+            btnsave.textContent="Update";
+            btnsave.id="s"+count;
+            btnsave.height='50px';
+            btnsave.width='70px'; 
+            btnsave.hidden=true; 
+            
+            divtag.appendChild(btn);
+            divtag.appendChild(btnedit);
+            divtag.appendChild(btnsave);
+
+            btnsave.addEventListener("click",function(){
+                document.getElementById(q1id).innerText=document.getElementById("txt1").value; 
+                document.getElementById(a1id).innerText=document.getElementById("txt2").value; 
+                document.getElementById("e"+this.id.substr(1,this.id.length)).hidden=false;
+                document.getElementById(this.id).hidden=true;  
+            });
+
+            btnedit.addEventListener("click",function(){
+                var sibling=this.parentNode.children;
+                q1id=sibling[0].id;
+                a1id=sibling[1].id;
+                document.getElementById("txt1").value=document.getElementById(q1id).innerText; 
+                document.getElementById("txt2").value=document.getElementById(a1id).innerText; 
+                document.getElementById(this.id).hidden=true;
+                document.getElementById("s"+this.id.substr(1,this.id.length)).hidden=false;
+            });
+
+            btn.addEventListener("click",function(){
+                document.getElementById(this.id).parentElement.remove();
+            });
+            document.body.appendChild(divtag);
+            
+            document.body.appendChild(lb);
+
+
+        }  
+    </script>
+</html>

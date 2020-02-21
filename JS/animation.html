@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <script type="text/javascript"> 
+            var imgobj=null;
+            var animate ;
+            function init()
+            {
+                imgobj=document.getElementById("image");
+                imgobj.style.position='relative';
+                imgobj.style.left='0px'
+            }
+            function movetoright()
+            {
+                 imgobj.style.left=parseInt(imgobj.style.left)+10+'px';
+                 animate=setTimeout(movetoright,20);
+            }
+            function stop()
+            {
+                clearTimeout(animate);
+                imgobj.style.left = '0px'; 
+
+            }
+            window.onload = init;
+        </script>
+    </head>
+
+    <body>
+        <img id="image" src="D:\Hetvi\html.gif">
+        <input type="button" value="Click" onclick="movetoright();">
+        <input type="button" value="stop" onclick="stop();">
+    </body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+    <body>
+        
+     </body>
+    <script>       
+        var n=prompt("Enter n:");
+        var flag=0,k=0,cnt=0,f=0;
+        var btntag;
+        var table = document.createElement('table');
+        function clear()
+                {
+                    for(i=0;i<n;i++)
+                    {
+                        for(j=0;j<n;j++)
+                        {
+                            document.getElementById(i+""+j).innerText="";
+                            f=0;
+                            cnt=0;
+                        }
+                    }
+                }
+        function checkwin(str)
+        {  
+            var d1=0,d2=0;
+            cnt++;
+            for(i=0;i<n;i++)
+            {
+                r=0,c=0;
+                for(j=0;j<n;j++)
+                {
+                    if(document.getElementById(i+""+j).innerText!="" && document.getElementById(i+""+j).innerText==str)
+                        r++;
+                    if(document.getElementById(j+""+i).innerText!="" && document.getElementById(j+""+i).innerText==str)
+                       c++;
+                }
+              
+                if(document.getElementById(i+""+i).innerText!="" && document.getElementById(i+""+i).innerText==str)
+                       d1++;
+                if(document.getElementById(i+""+(n-i-1)).innerText!="" && document.getElementById(i+""+(n-i-1)).innerText==str)
+                       d2++;
+               
+                if(r==n || c==n || d1==n || d2==n)
+                {
+                    alert(str+" wins");
+                    f=1;
+                    clear();
+                }
+               
+                if(f==0 && cnt==n*n)
+                {
+                    alert("Draw Game");
+                    clear();
+                }     
+            }
+        }
+        for(i=0;i<n;i++)
+        {
+            var tr = document.createElement('tr');   
+            for(j=0;j<n;j++)
+            { 
+                btntag=document.createElement("button");
+                btntag.id=i+""+j;
+                btntag.style.height='50px';
+                btntag.style.width='50px';
+                
+                var td = document.createElement('td');
+                td.appendChild(btntag);
+                tr.appendChild(td);
+           
+                btntag.addEventListener("click",function(){
+                    if(flag==0)
+                    {
+                        if(document.getElementById(this.id).innerText=="")
+                        {
+                            document.getElementById(this.id).innerText="O";
+                            flag=1;
+                            checkwin("O");
+                        }
+                    }
+                    else
+                    {
+                        if(document.getElementById(this.id).innerText=="")
+                        {
+                            document.getElementById(this.id).innerText="X";
+                            flag=0;
+                            checkwin("X");
+                        }
+                    }
+                });
+            }
+            table.appendChild(tr);
+            var lb=document.createElement("br");
+            document.body.appendChild(lb);
+        }
+        document.body.appendChild(table);  
+    </script>
+  
+</html>

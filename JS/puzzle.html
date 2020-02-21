@@ -1,0 +1,88 @@
+<html>
+    <body>
+        <script>
+            var arr=[];
+            var r,c;
+            var n=prompt("Enter n");
+            for(i=0;i<n*n;i++)
+            {
+                var rand=Math.floor(Math.random()*(n*n)+1);
+                if(arr.indexOf(rand) == -1)
+                        arr.push(rand);    
+                else
+                    i--;
+            }
+            console.log(arr);
+            var arrval=arr.values();
+            var table=document.createElement("table");
+            for(i=0;i<n;i++)
+            {
+                var tr=document.createElement("tr");
+                for(j=0;j<n;j++)
+                {
+                    var td=document.createElement("td");
+                    var text=document.createTextNode(arrval.next().value);
+                    if(text.textContent==n*n)
+                    {
+                        text.textContent="";
+                        r=i;
+                        c=j;
+                    }
+                    td.style.height="50px";
+                    td.style.width="50px";
+                    td.style.border="solid";
+                    td.style.textAlign="center";
+                    td.style.fontSize="20";
+                    td.id=i+" "+j;
+                    td.appendChild(text);
+                    tr.appendChild(td);
+                    td.addEventListener("click",function(){
+                        var val=this.id.split(" ");
+                        var row=val[0];
+                        var col=val[1];
+                       // alert(row+""+col);
+                        if(c==col)
+                        {
+                            if(row-r==-1 || row-r==1)
+                             {
+                                        document.getElementById(r+" "+c).innerText= document.getElementById(row+" "+col).innerText;
+                                        document.getElementById(row+" "+col).innerText="";
+                                        r=row; c=col;       
+                             }       
+                         }
+                         else if(r==row)
+                         {
+                            if(col-c==-1 || col-c==1)
+                             {
+                                        document.getElementById(r+" "+c).innerText= document.getElementById(row+" "+col).innerText;
+                                        document.getElementById(row+" "+col).innerText="";
+                                        win();
+                                        r=row; c=col;       
+                             }   
+                         }
+                    });
+                }
+                table.appendChild(tr);
+            }
+            document.body.appendChild(table);
+
+            function win()
+            {
+                var count=1,cnt=1;
+                for(i=0;i<n;i++)
+                {
+                    for(j=0;j<n;j++)
+                    {
+                        if(document.getElementById(i+" "+j).innerText==count)
+                        {
+                            cnt++;
+                            if(cnt==n*n)
+                                alert("Win");
+                        } 
+                        count++;  
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,174 @@
+<html>
+        <body>
+            <div style="height: 40px;width: 400px;background-color: aqua;text-align: center; font-size: 20;">Registration</div>
+            <div style="background-color: aquamarine;width: 400px">
+                <form name = "myForm" style="align-items: center;">
+                   <table style="border: 2;">  
+                      <tr>
+                         <td >Name:</td>
+                         <td><input type = "text" name = "name" id="txtname" /></td>
+                      </tr>
+                      <tr>
+                            <td >Age:</td>
+                            <td><input type = "text" name = "age" id="txtage"/></td>
+                      </tr>
+                      <tr>
+                            <td >EMail:</td>
+                            <td><input type = "text" name = "email"  id="txtemail"/></td>
+                     </tr>
+                     <tr>
+                            <td >DOB:</td>
+                            <td><input type = "date" name = "dob" id="txtdob" /></td>
+                     </tr>
+                      <tr>
+                         <td >Gender:</td>
+                         <td><input type = "radio" name = "gender" value="Male" />Male
+                            <input type = "radio" name = "gender" value="Female"/>Female</td>
+                         </tr>
+                     
+                      <tr>
+                         <td>Hobbies:</td>
+                         <td>
+                                <input type = "checkbox" name = "hobby" value="Reading" />Reading
+                                <input type = "checkbox" name = "hobby" value="Sports" />Sports
+                                <input type = "checkbox" name = "hobby" value="Dancing" />Dancing
+                         </td>
+                      </tr> 
+                      <tr>
+                         <td></td>
+                         <td><input type = "button" value = "Submit"  onclick="validate();"/></td>
+                         <td><input type = "button" value = "Reset" onclick="clear();"/></td>
+                      </tr>
+                      
+                   </table>
+                </form>   
+            </div>
+             </body>
+            <script>
+                var obj={};
+                k=1;
+                function validate()
+                {
+                    if( document.myForm.name.value == "" ) {
+                         alert( "Please enter your name!" );
+                         return false;
+                    }
+                    if(document.myForm.age.value<18)
+                    {
+                        alert( "Age must be greater than 18" );
+                         return false;
+                    }
+                    if(document.myForm.email.value=="")
+                    {
+                        alert( "please enter your email" );
+                         return false;
+                    }
+                    else{
+                        var eid = document.myForm.email.value;
+                        pos = eid.indexOf("@");
+                        dotpos = eid.lastIndexOf(".");
+                        if (pos < 1 || ( dotpos - pos < 2 )) {
+                            alert("Please enter correct emailid")
+                        return false;
+                    } 
+                 }
+                
+                    obj["Name"]=document.myForm.name.value; 
+                    obj["Age"]=document.myForm.age.value
+                    obj["Email"]=document.myForm.email.value;
+                    obj["Dob"]=document.myForm.dob.value;
+                    obj["Gender"]=document.myForm.gender.value;
+
+                    var items=document.getElementsByName('hobby');
+			    	var selectedItems="";
+			     	for(var i=0; i<items.length; i++){
+				    	if(items[i].type=='checkbox' && items[i].checked==true)
+					    	selectedItems+=items[i].value+"\n";
+			    	}
+		
+                    obj["Hobbies"]=selectedItems;
+
+                    var divtag=document.createElement("div");
+                    j=0;
+                    for(var prop in obj)
+                    {
+                               j++;
+                               var lb=document.createElement("br");
+                               var ptag=document.createElement("p");
+                               var txt=document.createTextNode(obj[prop]);
+                               ptag.id=k+""+j;
+                               ptag.addEventListener("mouseover",function(){
+                                    this.id.fontsize="20px";
+                               });
+                               ptag.appendChild(txt);
+                               divtag.appendChild(ptag);
+                    }   
+
+                               var btnedit=document.createElement("button");
+                               btnedit.textContent="Edit";
+                               btnedit.id=k;
+                               btnedit.height='50px';
+                               btnedit.width='70px';   
+                               divtag.appendChild(btnedit);
+
+                               var btnu=document.createElement("button");
+                               btnu.textContent="Update";
+                               btnu.id=k;
+                               btnu.height='50px';
+                               btnu.width='70px'; 
+                             //  btnu.hidden=true;  
+                              btnu.addEventListener("click",function(){
+                              
+                           document.getElementById(this.id+""+1).innerText= document.getElementById("txtname").value;
+                            document.getElementById(this.id+""+2).innerText=  document.getElementById("txtage").value  ;
+                            document.getElementById(this.id+""+3).innerText=  document.getElementById("txtemail").value;
+                            document.getElementById(this.id+""+4).innerText=  document.getElementById("txtdob").value ;
+                          //  document.getElementById(this.id+""+6).innerText=  document.getElementById("txthobbi").value;
+
+                             });
+                               divtag.appendChild(btnu);
+                           
+                         btnedit.addEventListener("click",function(){
+                              
+                                document.getElementById("txtname").value=document.getElementById(this.id+""+1).innerText;
+                                document.getElementById("txtage").value=document.getElementById(this.id+""+2).innerText;
+                                document.getElementById("txtemail").value=document.getElementById(this.id+""+3).innerText;
+                                document.getElementById("txtdob").value=document.getElementById(this.id+""+4).innerText;
+
+                                var hobbies=document.getElementById(this.id+""+6).innerText;
+                                var arrhobby=hobbies.split(" ");
+                               
+                            //    document.getElementById("txthobbi").value=document.getElementById(this.id+""+6).innerText;
+                                
+                          });
+
+                               var btndel=document.createElement("button");
+                               btndel.textContent="Delete";  
+                               btndel.height='50px';
+                               btndel.width='70px';   
+                               btndel.id=k;
+
+                        btndel.addEventListener("click",function(){
+                                var Val = confirm("Do you want to Delete ?");
+                                if( Val == true ) {
+                                    document.getElementById(this.id).parentElement.remove();
+                                }
+                             
+                       });
+                              divtag.appendChild(btndel);
+                              document.body.appendChild(divtag);    
+                              k++;
+                               
+                   }     
+                   function clear()
+                   {
+                       alert("sdfs");
+                      document.myForm.name.value="";
+                      document.myForm.age.value="";
+                    document.myForm.email.value="";
+                    document.myForm.dob.value="";
+                  //  document.myForm.hobbis.value=-1;
+                   }
+            </script>
+           
+</html>

@@ -1,0 +1,28 @@
+<html>
+    <script>
+        var num=1;
+        var arr=[];
+        var n=prompt("Enter n");
+        for(i=0;i<n;i++)
+        {  
+            arr[i]=[];
+            for(k=0;k<=i;k++)
+            {
+                if(k==i || k==0)
+                    arr[i][k]=num;
+                else
+                {
+                    arr[i][k]=arr[i-1][k-1]+arr[i-1][k];
+                }       
+            } 
+        }
+        for(i=0;i<n;i++)
+        {
+            for(k=0;k<n-i;k++)
+                 document.write("&nbsp;");    
+            for(j=0;j<=i;j++)
+                document.write(arr[i][j]);
+             document.write("<br>");
+        }  
+    </script>
+</html>

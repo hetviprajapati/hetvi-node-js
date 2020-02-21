@@ -1,0 +1,130 @@
+<html>
+    <head>
+            <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+       </script>
+    </head>
+    <script>
+            var count=0;
+            var q1id;
+            var a1id;
+            function Create()
+            {
+                count++;
+                var lb=document.createElement("br");
+                var divtag=document.createElement("div");
+    
+                var q1=document.createElement("p");
+                q1.id="q"+count;
+                var a1=document.createElement("p");
+                a1.id="a"+count;
+                var q1txt=document.createTextNode(document.getElementById("txt1").value);
+                var a1txt=document.createTextNode(document.getElementById("txt2").value);
+                q1.appendChild(q1txt);
+                a1.appendChild(a1txt);
+    
+                divtag.appendChild(q1);
+                divtag.appendChild(a1);
+    
+                divtag.style.height='100px';
+                divtag.style.width='170px';
+                divtag.style.backgroundColor="orange";
+                divtag.className="divClass";
+                divtag.id="d"+count;
+
+              
+                var btn=document.createElement("button");
+                btn.textContent="Delete";
+                btn.id="b"+count;
+                btn.height='50px';
+                btn.width='70px';  
+                divtag.appendChild(lb);
+                btn.style.marginTop='10px';
+               
+                var btnedit=document.createElement("button");
+                btnedit.textContent="Edit";
+                btnedit.id="e"+count;
+                btnedit.height='50px';
+                btnedit.width='70px';  
+    
+                var btnsave=document.createElement("button");
+                btnsave.textContent="Save";
+                btnsave.id="s"+count;
+                btnsave.height='50px';
+                btnsave.width='70px';  
+                
+                divtag.appendChild(btn);
+                divtag.appendChild(btnedit);
+                divtag.appendChild(btnsave);
+                
+                btnsave.addEventListener("click",function(){
+                    document.getElementById(q1id).innerText=document.getElementById("txt1").value; 
+                    document.getElementById(a1id).innerText=document.getElementById("txt2").value; 
+                });
+    
+                btnedit.addEventListener("click",function(){
+                    var sibling=this.parentNode.children;
+                    q1id=sibling[0].id;
+                    a1id=sibling[1].id;
+                   
+                    document.getElementById("txt1").value=document.getElementById(q1id).innerText; 
+                    document.getElementById("txt2").value=document.getElementById(a1id).innerText; 
+                });
+    
+                btn.addEventListener("click",function(){
+                    document.getElementById(this.id).parentElement.remove();
+                });
+        
+               var maindiv=document.getElementById("mydiv");
+                maindiv.appendChild(divtag);
+                
+                page();
+                document.body.appendChild(lb);
+            }  
+        </script>
+<body>
+        Q:<input type="text" id="txt1">
+        <br><br>
+        A:<input type="text" id="txt2">
+        <br><br>
+        <input type="button" id="btnAdd" value="Add" onclick="Create()">
+        <br>
+        <div id="mydiv"></div>
+   
+        <ul id="pagin">
+                 
+        </ul>
+        
+</body>
+<script>
+    var i=1;
+    var j=0; 
+    function page(){
+        var pageSize = 4;
+         var pageCount = $("#mydiv").children().length / pageSize;
+          j++;
+          if(j%pageSize==1 || i==1)
+          {
+                $("#pagin").append('<li><a href="#">'+(i)+'</a></li> ');
+                i++;
+          }
+        function showPage(page){
+         $(".divClass").hide();
+         $(".divClass").each(function(n) {
+                 if (n >= pageSize * (page - 1) && n < pageSize * page)
+                    $(this).show();
+             });        
+         }
+         showPage(i-1);
+         $("#pagin li a").click(function() {
+             showPage(parseInt($(this).text())) 
+         });
+    }
+     </script>
+  <style>
+
+#pagin li {
+  display: inline-block; 
+}
+</style>
+</html>

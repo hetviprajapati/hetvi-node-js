@@ -1,0 +1,146 @@
+<html>
+    <body>
+        <table style="border:solid;border-width: 2px;" id="tbl">
+            <tr>
+                <td colspan="4"><input type="text" style="text-align: end;" id="txtinput" readonly></td>
+            </tr>
+            <tr>
+                <td>C</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>*</td>
+             </tr>
+             <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>/</td>
+            </tr>
+            <tr>
+                <td>.</td>
+                <td>0</td>
+                <td>=</td>
+                <td>+</td>
+            </tr>
+        </table>
+
+        <script>
+         var flag=0,f=0;
+         var num,ans,opt="",opt1="",num2;
+         var tdele=document.getElementsByTagName("td");
+        for(i=0;i<tdele.length;i++)
+        {
+            tdele[i].addEventListener("click",cal);
+        }
+        function cal()
+        {
+            if(this.textContent=="C")
+            {
+                document.getElementById("txtinput").value="";
+                flag=0;
+                f=0;
+                ans=0;
+                num=0;
+                num1=0;
+                opt="";
+                opt1="";
+            }
+            else if(!isNaN(this.textContent))
+            {  
+                    if(flag==0)
+                    {
+                        document.getElementById("txtinput").value=this.textContent;
+                    }
+                    else
+                    {
+                       document.getElementById("txtinput").value+=this.textContent;
+                    }   
+                    flag=1;
+            }   
+            else{
+                if(this.textContent=="=")
+                {
+                    num=parseFloat(document.getElementById("txtinput").value);
+                    calculate(opt1);
+                    opt1="";
+                }
+                else if(this.textContent==".")
+                {
+                    if(!document.getElementById("txtinput").value.includes("."))
+                    {
+                        if(flag==0)
+                        {
+                            document.getElementById("txtinput").value="0"+this.textContent;
+                            flag=1;
+                        }
+                        else
+                          document.getElementById("txtinput").value+=this.textContent;
+                    }
+                }
+                else
+                {
+                    num=parseFloat(document.getElementById("txtinput").value);
+                  
+                    if(opt1!="")
+                    {
+                         calculate(opt1);
+                    }
+                    opt1=this.textContent;
+                    flag=0;
+                    if(f==0)
+                        num2=num;
+                    else
+                        num2=ans;
+                    f=1;
+                }   
+            }
+        }
+        function calculate(opt)
+        {
+            switch(opt){
+                    case '+':
+                        ans= num+num2;
+                        document.getElementById("txtinput").value=ans;
+                       break;
+                    case '-':
+                        ans= num2-num;
+                        document.getElementById("txtinput").value=ans;
+                       break;
+                    case '*':
+                        ans= num*num2;
+                        document.getElementById("txtinput").value=ans;
+                       break;
+                    case '/':
+                        if(num==0)
+                        {
+                            document.getElementById("txtinput").value="Divide by 0 error";
+                        }
+                        else
+                        {
+                            ans= num2/num;
+                            document.getElementById("txtinput").value=ans;
+                        }     
+                       break;
+              }
+        }
+        </script>
+    </body>
+    <style>
+        #tbl td{
+            width: 50px;
+            height: 50px;
+            border: solid;border-width: 1px;
+            text-align: center;
+            font-size: 20;
+        }
+    </style>
+</html>

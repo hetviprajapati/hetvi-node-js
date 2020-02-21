@@ -1,0 +1,64 @@
+<html>
+<style>
+#mydiv {
+  position: absolute;
+  background-color: #2196F3;
+  text-align: center;
+}
+#div1{
+    height: 200px;
+    width: 200px;
+    background-color: aqua;
+}
+</style>
+<body>
+<div id="div1">
+    <div id="mydiv">
+        hello
+      </div>
+</div>
+
+<p id="p1"></p>
+<script>
+
+dragElement(document.getElementById("mydiv"),document.getElementById("div1"));
+
+function dragElement(elmnt,div1) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+    var left=div1.offsetLeft;
+   
+    var top=div1.offsetTop;
+  
+   var h= div1.offsetHeight;
+   var w=div1.offsetWidth;
+
+  elmnt.onmousedown = dragMouseDown;
+
+  function dragMouseDown(e) { 
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+  //  document.getElementById("p1").innerText=pos3 - e.clientX+ " "+pos3+"  " +e.clientX+" "+elmnt.offsetTop+" "+elmnt.offsetLeft;
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    if((elmnt.offsetTop - pos2)<h  &&  (elmnt.offsetLeft - pos1)<w &&  (elmnt.offsetLeft - pos1)>left && (elmnt.offsetTop - pos2)>top)
+    {
+       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+       elmnt.style.left = (elmnt.offsetLeft -pos1) + "px";
+    }   
+  }
+  function closeDragElement() {  
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+</body>
+</html>
